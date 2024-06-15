@@ -3,6 +3,8 @@ import InputForm from './components/InputForm';
 import Articles from './components/Articles';
 import './App.css';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 const App = () => {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -12,7 +14,7 @@ const App = () => {
         setLoading(true);
         try {
             // Post the topic to the backend
-            const scrapeResponse = await fetch('http://localhost:8080/scrape', {
+            const scrapeResponse = await fetch(`${baseUrl}/scrape`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,7 +30,7 @@ const App = () => {
             await new Promise(resolve => setTimeout(resolve, 5000));
     
             // Fetch the articles from the backend
-            const articlesResponse = await fetch('http://localhost:8080/articles', {
+            const articlesResponse = await fetch(`${baseUrl}/articles`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,6 +54,7 @@ const App = () => {
                 alert("Articles fetched successfully.");
             }
         } catch (error) {
+            console.log({msg: error.message});
             alert("Error fetching articles. Something went wrong.");
         } finally {
             setLoading(false);

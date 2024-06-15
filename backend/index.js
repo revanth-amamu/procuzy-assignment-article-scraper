@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+require('dotenv').config();
 const { getTrendingBlogs } = require('./scraper');
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-const port = 8080;
+const port = process.env.PORT || 8000;
 
 let articles = [];
 
@@ -15,9 +16,8 @@ app.post('/scrape', async (req, res) => {
     if (!topic) {
         return res.status(400).json({ error: 'Topic is required' });
     }
-
     try {
-        articles = await getTrendingBlogs(topic);
+        articles = await getTrendingBlogs(res, topic);
         res.json({ message: 'Scraping initiated' });
     } catch (error) {
         console.error(error);
