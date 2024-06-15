@@ -1,0 +1,43 @@
+.topic-form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px;
+    margin: 0px auto;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #ff7a18;
+  }
+
+.button {
+    padding: 10px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff7a18;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #f56b09;
+}
